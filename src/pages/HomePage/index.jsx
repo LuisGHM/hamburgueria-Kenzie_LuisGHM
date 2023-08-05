@@ -1,26 +1,73 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { CartModal } from "../../components/CartModal";
 import { Header } from "../../components/Header";
 import { ProductList } from "../../components/ProductList";
+import { api } from "../../services/api";
+import { toast } from "react-hot-toast";
 
 export const HomePage = () => {
    const [productList, setProductList] = useState([]);
    const [cartList, setCartList] = useState([]);
+   const [isOpen, setIsOpen] = useState(false);
+   const [searchValue, setSearchValue] = useState("");
+   const [searchValueCart, setSearchValueCart] = useState("");
 
-   // useEffect montagem - carrega os produtos da API e joga em productList
-   // useEffect atualização - salva os produtos no localStorage (carregar no estado)
-   // adição, exclusão, e exclusão geral do carrinho
-   // renderizações condições e o estado para exibir ou não o carrinho
-   // filtro de busca
-   // estilizar tudo com sass de forma responsiva
+   const itemsLocalStorage = JSON.parse(localStorage.getItem("@CARTITENS")) || [];
+
+   useEffect(() => {
+      setCartList(itemsLocalStorage);
+   }, []);
+   
+   const getProducts = async () => {
+      const { data } = await api.get("products");
+      setProductList(data);
+   };
+
+   useEffect(() => {
+      getProducts();
+   }, []);
+
+   const filterProducts = () => {
+      const productFilter = productList.filter((product) =>
+         searchValue === "" ? true : product.name.toLocaleUpperCase().includes(searchValue.toLocaleUpperCase())
+      );
+      return productFilter;
+   };
+
+   useEffect(() => {
+      if(!searchValueCart == ""){
+         if (itemsLocalStorage.length === 0) {
+            const updatedCartList = [...cartList, searchValueCart];
+            setCartList(updatedCartList);
+            localStorage.setItem("@CARTITENS", JSON.stringify(updatedCartList));
+          }else{
+            const isItemInLocalStorage = itemsLocalStorage.some(item => item.id === searchValueCart.id);
+            if (!isItemInLocalStorage) {
+               // Create a new array with the current cartList and add the lastItem to it
+               const updatedCartList = [...cartList, searchValueCart];
+         
+               // Update the state with the new cartList containing the lastItem
+               setCartList(updatedCartList);
+         
+               // Update the localStorage with the updated cartList
+               localStorage.setItem("@CARTITENS", JSON.stringify(updatedCartList));
+             } else {
+               // If the item is already in localStorage, show the error toast
+               toast.error("Item já adicionado");
+             }
+         }
+         setSearchValueCart("");
+       }
+    }, [searchValueCart]);
 
    return (
       <>
-         <Header />
+         <Header setSearchValue={setSearchValue} cartList={cartList} setIsOpen={setIsOpen}/>
          <main>
-            <ProductList productList={productList} />
-            <CartModal cartList={cartList} />
+            <ProductList productList={filterProducts()} setSearchValueCart={setSearchValueCart} cartList={cartList}/>
+            <CartModal cartList={cartList} isOpen={isOpen} setIsOpen={setIsOpen}/>
          </main>
       </>
    );
 };
+
