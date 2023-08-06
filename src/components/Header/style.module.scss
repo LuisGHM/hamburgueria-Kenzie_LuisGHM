@@ -1,0 +1,39 @@
+.header{
+    background-color: var(--color-grey-0);
+}
+
+.headerContainer{
+    display: flex;
+
+    flex-direction: column;
+    background-color: aqua;
+}
+
+.optContainer{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-direction: row;
+}
+
+.formInput{
+    border: 1px solid black;
+    height: 40px;
+    display: flex;
+    align-items: center;
+
+    & > input{
+        border: none;
+        width: 100%;
+        height: 100%;
+    }
+
+    &> button{
+        border: none;
+        background-color: transparent;
+        margin-left: -30px; 
+        cursor: pointer;
+        display: inline-flex;
+        align-items: center;
+    }
+}

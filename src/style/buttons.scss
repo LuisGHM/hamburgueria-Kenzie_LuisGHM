@@ -1,5 +1,12 @@
 .btn{
     display: inline-flex;
     padding: 20px;
-    background-color: var();
+    background-color: #BDBDBD;
+    border-radius: 8px;
+    width: 130px;
+    height: clamp(40px, 5vh, 60px);
+
+    &:hover{
+        background-color: #27AE60;
+    }
 }
