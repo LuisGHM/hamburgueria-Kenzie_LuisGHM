@@ -1,0 +1,27 @@
+.cardContainer{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+
+    & > div{
+        display: flex;
+        flex-direction: row;
+        gap: 10px;
+
+        & > img{
+            width: 55px;
+            height: 55px;
+            background-color: var(--color-grey-1);
+            border-radius: 8px;
+        }
+    }
+
+    & > button{
+        background-color: transparent;
+        border: none;
+        width: 11.311px;
+        height: 14px;
+        color: #BDBDBD;
+    }
+
+}

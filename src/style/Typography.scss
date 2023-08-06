@@ -11,6 +11,10 @@
 .title3{
     font-size: 18px;
     font-weight: bold;
+
+    &.white{
+        color: #FFF;
+    }
 }
 
 .title4{
@@ -24,6 +28,14 @@
 
     &.semiBold{
         font-weight: 600;
+    }
+
+    &.green{
+        color: var(--color-primary)
+    }
+
+    &.grey3{
+        color: var(--color-grey-3);
     }
 }
 

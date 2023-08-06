@@ -4,7 +4,11 @@
     background-color: #BDBDBD;
     border-radius: 8px;
     width: 130px;
-    height: clamp(40px, 5vh, 60px);
+    height: 40px;
+    justify-content: center;
+    align-items: center;
+    color: #FFF;
+    border: none;
 
     &:hover{
         background-color: #27AE60;

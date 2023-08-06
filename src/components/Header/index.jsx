@@ -10,19 +10,23 @@ export const Header = ({ setSearchValue, cartList, setIsOpen }) => {
       setSearchValue(value);
    }, [value, setSearchValue]);
 
+   const submit = (e) =>{
+      e.preventDefault();
+   }
+
    return (
       <header className={styles.header}>
          <div className="container">
             <div className={styles.headerContainer}>
                <div className={styles.optContainer}>
                   <img src={Logo} alt="Logo Kenzie Burguer" />
-                  <button onClick={() => setIsOpen(true)}>
+                  <button onClick={() => setIsOpen(true)} className={styles.cartButton}>
                      <MdShoppingCart size={21} />
-                     <span>{cartList.length}</span>
+                     <span className={styles.spanCount}>{cartList.length}</span>
                   </button>
                </div>
-               <form className={styles.formInput}>
-                  <input type="text" value={value} onChange={(e) => setValue(e.target.value)} />
+               <form className={styles.formInput} onSubmit={submit}>
+                  <input placeholder="Digitar Pesquisa" type="text" value={value} onChange={(e) => setValue(e.target.value)} />
                   <button type="submit">
                      <MdSearch size={21} />
                   </button>

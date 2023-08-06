@@ -64,8 +64,8 @@ export const HomePage = () => {
       <>
          <Header setSearchValue={setSearchValue} cartList={cartList} setIsOpen={setIsOpen}/>
          <main>
-            <ProductList productList={filterProducts()} setSearchValueCart={setSearchValueCart} cartList={cartList}/>
-            <CartModal cartList={cartList} isOpen={isOpen} setIsOpen={setIsOpen}/>
+            <ProductList productList={filterProducts()} setSearchValueCart={setSearchValueCart} cartList={cartList} isOpen={isOpen}/>
+            <CartModal cartList={cartList} isOpen={isOpen} setIsOpen={setIsOpen} setCartList={setCartList}/>
          </main>
       </>
    );

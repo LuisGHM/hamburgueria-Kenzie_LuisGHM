@@ -1,0 +1,47 @@
+.card {
+    flex: 0 0 auto; 
+    margin-right: 20px; 
+    border: 2px solid var(--color-grey-1);
+    background-color: var(--color-grey-0);
+    width: 300px;
+    height: 350px;
+
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 52px;
+
+    &.focusedCard {
+        border: 2px solid var(--color-primary);
+      }
+
+    &:last-child {
+      margin-right: 0;
+    }
+}
+
+.containerImg{
+    width: 100%;
+    height: 150px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.img{
+    max-height: 177px;
+    max-width: 177px;
+    align-self: center;
+} 
+
+.itemInf{
+    width: 100%;
+    height: 100%;
+    padding: 20px;
+
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+
+    background-color: #FFF;
+}
+  
