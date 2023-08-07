@@ -35,20 +35,16 @@ export const ProductList = ({ productList, setSearchValueCart, cartList }) => {
       setShowCarousel(window.innerWidth >= 700);
     };
 
-    // Adicionar o event listener para detectar o redimensionamento da janela
     window.addEventListener("resize", handleResize);
 
-    // Chamar a função de redimensionamento uma vez no momento da montagem
     handleResize();
 
-    // Remover o event listener quando o componente for desmontado
     return () => {
       window.removeEventListener("resize", handleResize);
     };
   }, []);
 
   if (showCarousel) {
-    // Renderizar os itens do productList sem o Carousel se a largura for menor que 700 pixels
     return (
       <section className="container">
         <div className={styles.carouselContainer}>
@@ -77,7 +73,7 @@ export const ProductList = ({ productList, setSearchValueCart, cartList }) => {
           itemClass={styles.card}
           partialVisible
           focusOnSelect
-          arrows={false} // Mostra ou esconde as setas com base no valor de showCarousel
+          arrows={false}
         >
           {productList.map((product) => (
             <ProductCard

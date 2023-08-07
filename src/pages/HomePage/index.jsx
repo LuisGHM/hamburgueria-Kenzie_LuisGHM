@@ -43,16 +43,12 @@ export const HomePage = () => {
           }else{
             const isItemInLocalStorage = itemsLocalStorage.some(item => item.id === searchValueCart.id);
             if (!isItemInLocalStorage) {
-               // Create a new array with the current cartList and add the lastItem to it
                const updatedCartList = [...cartList, searchValueCart];
          
-               // Update the state with the new cartList containing the lastItem
                setCartList(updatedCartList);
-         
-               // Update the localStorage with the updated cartList
+
                localStorage.setItem("@CARTITENS", JSON.stringify(updatedCartList));
              } else {
-               // If the item is already in localStorage, show the error toast
                toast.error("Item já adicionado");
              }
          }
